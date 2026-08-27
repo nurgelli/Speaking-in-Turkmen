@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaSpin - Dil Öğretmeni İnteraktif Soru Çarkı</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo" id="logoHome">
+            <div class="logo-icon">🎡</div>
+            <span>LinguaSpin</span>
+        </div>
+        <div class="nav-actions">
+            <button class="btn btn-secondary" id="btnNavStudent">🎓 Öğrenci Modu</button>
+            <button class="btn btn-accent" id="btnNavAdmin">👩‍🏫 Öğretmen Paneli</button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+
+        <!-- VIEW 1: CATEGORY SELECTION -->
+        <section id="categoriesView" class="view active">
+            <div class="hero-header">
+                <h1 class="hero-title">Çalışmak İstediğiniz Kategoriyi Seçin</h1>
+                <p class="hero-subtitle">Kategorinizi seçin, 3D Karuseli döndürün ve 1 dakikalık pratik yarışmasına katılın!</p>
+            </div>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Dynamically populated categories -->
+            </div>
+        </section>
+
+        <!-- VIEW 2: 3D CAROUSEL STAGE -->
+        <section id="carouselView" class="view">
+            <div class="carousel-view-header">
+                <button class="back-btn" id="btnBackToCat">&larr; Kategorilere Dön</button>
+                <h2 id="carouselCatTitle" class="hero-title" style="font-size:1.8rem; margin:0;">Kategori Adı</h2>
+                <div></div>
+            </div>
+
+            <div class="carousel-stage-container">
+                <!-- Center Spin Trigger -->
+                <button class="spin-trigger-btn" id="btnSpinCarousel">
+                    <span style="font-size:1.8rem">🎯</span>
+                    <span>SEÇ</span>
+                </button>
+
+                <!-- 3D Wheel Stage -->
+                <div class="carousel-wheel" id="carouselWheel">
+                    <!-- Cards rendered dynamically -->
+                </div>
+            </div>
+            <p style="text-align:center; color:var(--text-muted); font-size:0.95rem;">
+                Sorulardan birini rastgele seçmek için <strong>ortadaki SEÇ butonuna</strong> basınız.
+            </p>
+        </section>
+
+        <!-- VIEW 3: 1 MINUTE TIMER CHALLENGE -->
+        <section id="timerView" class="view">
+            <div class="carousel-view-header">
+                <button class="back-btn" id="btnBackFromTimer">&larr; Karusele Dön</button>
+                <h2 class="hero-title" style="font-size:1.8rem; margin:0;">1 Dakikalık Pratik Modu</h2>
+                <div></div>
+            </div>
+
+            <div class="timer-container">
+                <div class="timer-question-banner">
+                    <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.5rem; font-weight:600;">SEÇİLEN SORU:</div>
+                    <div class="timer-question-title" id="timerQuestionText">Soru burada görünecek...</div>
+                </div>
+
+                <!-- SVG CIRCLE CLOCK -->
+                <div class="timer-clock-wrapper">
+                    <svg class="timer-svg" viewBox="0 0 200 200">
+                        <circle class="timer-bg-circle" cx="100" cy="100" r="90"></circle>
+                        <circle class="timer-progress-circle" id="timerProgressRing" cx="100" cy="100" r="90"></circle>
+                    </svg>
+                    <div class="timer-display-text">
+                        <span id="timerText">01:00</span>
+                        <span class="timer-label">Kalan Süre</span>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button class="btn btn-secondary" id="btnPauseTimer">⏸️ Duraklat</button>
+                    <button class="btn btn-secondary" id="btnResetTimer">🔄 Yeniden Başlat</button>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" style="text-align:center">📝 Çalışma Notları / Cümle Taslağınız (İsteğe Bağlı):</label>
+                    <textarea class="notes-area" id="notesArea" placeholder="Konuşmanıza başlamadan önce anahtar kelimeleri buraya yazabilirsiniz..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 4: TEACHER ADMIN PANEL -->
+        <section id="adminView" class="view">
+            <div class="hero-header" style="text-align:left; margin-bottom:1.5rem;">
+                <h1 class="hero-title" style="font-size:2rem;">👩‍🏫 Öğretmen Yönetim Paneli</h1>
+                <p class="hero-subtitle" style="margin:0;">Kategorilerinizi ve öğrencilere yönelik soruları buradan yönetebilirsiniz.</p>
+            </div>
+
+            <div class="admin-header-tabs">
+                <button class="tab-btn active" id="tabBtnCategories" onclick="switchAdminTab('categories')">📁 Kategoriler</button>
+                <button class="tab-btn" id="tabBtnQuestions" onclick="switchAdminTab('questions')">❓ Sorular</button>
+            </div>
+
+            <!-- TAB 1: CATEGORIES -->
+            <div id="adminCategoriesSection" class="admin-section active">
+                <div class="admin-actions-bar">
+                    <h3>Kategori Listesi</h3>
+                    <button class="btn btn-primary" onclick="openCategoryFormModal()">➕ Yeni Kategori Ekle</button>
+                </div>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>İkon</th>
+                            <th>Kategori Adı</th>
+                            <th>Açıklama</th>
+                            <th>Renk</th>
+                            <th>Soru Sayısı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminCatTableBody">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- TAB 2: QUESTIONS -->
+            <div id="adminQuestionsSection" class="admin-section">
+                <div class="admin-actions-bar">
+                    <h3>Soru Listesi</h3>
+                    <button class="btn btn-primary" onclick="openQuestionFormModal()">➕ Yeni Soru Ekle</button>
+                </div>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori</th>
+                            <th>Soru Metni</th>
+                            <th>Zorluk</th>
+                            <th>İpucu</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminQuestionsTableBody">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- QUESTION MODAL POPUP -->
+    <div class="modal-overlay" id="questionModal">
+        <div class="modal-box">
+            <div class="modal-icon-badge" id="modalCatIcon">❓</div>
+            <div style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.5rem; font-weight:600;">RASTGELE SEÇİLEN SORU</div>
+            <div class="modal-question-text" id="modalQuestionText">Soru metni buraya gelecek...</div>
+            <div class="modal-hint-box" id="modalHintBox">💡 İpucu: ...</div>
+            <p style="margin-bottom:1.5rem; font-size:0.95rem; color:var(--text-muted);">
+                Bu soru ile 1 dakikalık konuşma/çalışma süresini başlatmak istiyor musunuz?
+            </p>
+            <div class="modal-actions">
+                <button class="modal-btn btn btn-primary" id="btnModalYes">✅ Evet (1 Dk Başlat)</button>
+                <button class="modal-btn btn btn-secondary" id="btnModalNo">❌ Hayır (Yeniden Seç)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN CATEGORY FORM MODAL -->
+    <div class="modal-overlay" id="categoryFormModal">
+        <div class="modal-box" style="text-align:left;">
+            <h2 id="catFormModalTitle" style="margin-bottom:1.5rem; font-family:'Outfit'; font-size:1.5rem;">Yeni Kategori Ekle</h2>
+            <form id="catForm">
+                <input type="hidden" id="catFormId">
+                <div class="form-group">
+                    <label class="form-label">Kategori Adı</label>
+                    <input type="text" class="form-input" id="catFormName" placeholder="Örn: Günlük Konuşma" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Açıklama</label>
+                    <textarea class="form-textarea" id="catFormDesc" rows="2" placeholder="Kategori hakkında kısa bilgi..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">İkon (Emoji)</label>
+                        <input type="text" class="form-input" id="catFormIcon" placeholder="🗣️">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tema Rengi</label>
+                        <input type="color" class="form-input" id="catFormColor" value="#6366f1" style="height:44px; padding:2px;">
+                    </div>
+                </div>
+                <div class="modal-actions" style="margin-top:1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
+                    <button type="button" class="btn btn-secondary" style="flex:1;" onclick="closeCategoryFormModal()">İptal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN QUESTION FORM MODAL -->
+    <div class="modal-overlay" id="questionFormModal">
+        <div class="modal-box" style="text-align:left;">
+            <h2 id="qFormModalTitle" style="margin-bottom:1.5rem; font-family:'Outfit'; font-size:1.5rem;">Yeni Soru Ekle</h2>
+            <form id="qForm">
+                <input type="hidden" id="qFormId">
+                <div class="form-group">
+                    <label class="form-label">Kategori</label>
+                    <select class="form-select" id="qFormCategory" required>
+                        <!-- Categories populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Soru Metni</label>
+                    <textarea class="form-textarea" id="qFormText" rows="3" placeholder="Öğrenciden cevaplamasını istediğiniz soruyu giriniz..." required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Zorluk Derecesi</label>
+                        <select class="form-select" id="qFormDiff">
+                            <option value="Kolay">Kolay</option>
+                            <option value="Orta" selected>Orta</option>
+                            <option value="Zor">Zor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">İpucu / Grammar Notu</label>
+                        <input type="text" class="form-input" id="qFormHint" placeholder="Örn: Use Present Perfect...">
+                    </div>
+                </div>
+                <div class="modal-actions" style="margin-top:1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
+                    <button type="button" class="btn btn-secondary" style="flex:1;" onclick="closeQuestionFormModal()">İptal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
