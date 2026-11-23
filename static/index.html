@@ -1,79 +1,73 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinguaSpin - Dil Öğretmeni İnteraktif Soru Çarkı</title>
+    <title>LinguaSpin — Türkmençe gepleşik türgenleşigi</title>
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-
-    <!-- NAVBAR -->
+    <!-- Ýokarky nawigasiýa paneli -->
     <nav class="navbar">
         <div class="logo" id="logoHome">
             <div class="logo-icon">🎡</div>
             <span>LinguaSpin</span>
         </div>
         <div class="nav-actions">
-            <button class="btn btn-secondary" id="btnNavStudent">🎓 Öğrenci Modu</button>
-            <button class="btn btn-accent" id="btnNavAdmin">👩‍🏫 Öğretmen Paneli</button>
+            <button class="btn btn-secondary" id="btnNavStudent">🎓 Okuwçy düzgüni</button>
+            <button class="btn btn-accent" id="btnNavAdmin">👩‍🏫 Mugallym paneli</button>
         </div>
     </nav>
 
-    <!-- MAIN CONTAINER -->
+    <!-- Esasy mazmun -->
     <main class="container">
-
-        <!-- VIEW 1: CATEGORY SELECTION -->
+        <!-- 1-nji bölüm: kategoriýany saýlamak -->
         <section id="categoriesView" class="view active">
             <div class="hero-header">
-                <h1 class="hero-title">Çalışmak İstediğiniz Kategoriyi Seçin</h1>
-                <p class="hero-subtitle">Kategorinizi seçin, 3D Karuseli döndürün ve 1 dakikalık pratik yarışmasına katılın!</p>
+                <h1 class="hero-title">Türgenleşmek isleýän mowzugyňyzy saýlaň</h1>
+                <p class="hero-subtitle">Mowzugy saýlaň, 3D çarhy aýlaň we bir minutlyk gepleşik türgenleşigine başlaň!</p>
             </div>
             <div class="categories-grid" id="categoriesGrid">
-                <!-- Dynamically populated categories -->
+                <!-- Kategoriýalar bu ýerde awtomatik görkezilýär -->
             </div>
         </section>
 
-        <!-- VIEW 2: 3D CAROUSEL STAGE -->
+        <!-- 2-nji bölüm: 3D sorag çarhy -->
         <section id="carouselView" class="view">
             <div class="carousel-view-header">
-                <button class="back-btn" id="btnBackToCat">&larr; Kategorilere Dön</button>
-                <h2 id="carouselCatTitle" class="hero-title" style="font-size:1.8rem; margin:0;">Kategori Adı</h2>
+                <button class="back-btn" id="btnBackToCat">&larr; Kategoriýalara dolan</button>
+                <h2 id="carouselCatTitle" class="hero-title" style="font-size:1.8rem; margin:0;">Kategoriýanyň ady</h2>
                 <div></div>
             </div>
-
             <div class="carousel-stage-container">
-                <!-- Center Spin Trigger -->
+                <!-- Çarhy aýlaýan merkezi düwme -->
                 <button class="spin-trigger-btn" id="btnSpinCarousel">
                     <span style="font-size:1.8rem">🎯</span>
-                    <span>SEÇ</span>
+                    <span>SAÝLA</span>
                 </button>
-
-                <!-- 3D Wheel Stage -->
+                <!-- 3D çarh we onuň sorag kartlary -->
                 <div class="carousel-wheel" id="carouselWheel">
-                    <!-- Cards rendered dynamically -->
+                    <!-- Kartlar awtomatik döredilýär -->
                 </div>
             </div>
             <p style="text-align:center; color:var(--text-muted); font-size:0.95rem;">
-                Sorulardan birini rastgele seçmek için <strong>ortadaki SEÇ butonuna</strong> basınız.
+                Tötänleýin sorag saýlamak üçin ortadaky <strong>SAÝLA</strong> düwmesine basyň.
             </p>
         </section>
 
-        <!-- VIEW 3: 1 MINUTE TIMER CHALLENGE -->
+        <!-- 3-nji bölüm: bir minutlyk türgenleşik -->
         <section id="timerView" class="view">
             <div class="carousel-view-header">
-                <button class="back-btn" id="btnBackFromTimer">&larr; Karusele Dön</button>
-                <h2 class="hero-title" style="font-size:1.8rem; margin:0;">1 Dakikalık Pratik Modu</h2>
+                <button class="back-btn" id="btnBackFromTimer">&larr; Çarha dolan</button>
+                <h2 class="hero-title" style="font-size:1.8rem; margin:0;">Bir minutlyk türgenleşik</h2>
                 <div></div>
             </div>
-
             <div class="timer-container">
                 <div class="timer-question-banner">
-                    <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.5rem; font-weight:600;">SEÇİLEN SORU:</div>
-                    <div class="timer-question-title" id="timerQuestionText">Soru burada görünecek...</div>
+                    <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.5rem; font-weight:600;">SAÝLANAN SORAG:</div>
+                    <div class="timer-question-title" id="timerQuestionText">Sorag şu ýerde görkeziler...</div>
                 </div>
-
-                <!-- SVG CIRCLE CLOCK -->
+                <!-- SVG görnüşindäki tegelek sagat -->
                 <div class="timer-clock-wrapper">
                     <svg class="timer-svg" viewBox="0 0 200 200">
                         <circle class="timer-bg-circle" cx="100" cy="100" r="90"></circle>
@@ -81,171 +75,105 @@
                     </svg>
                     <div class="timer-display-text">
                         <span id="timerText">01:00</span>
-                        <span class="timer-label">Kalan Süre</span>
+                        <span class="timer-label">Galan wagt</span>
                     </div>
                 </div>
-
                 <div class="timer-controls">
-                    <button class="btn btn-secondary" id="btnPauseTimer">⏸️ Duraklat</button>
-                    <button class="btn btn-secondary" id="btnResetTimer">🔄 Yeniden Başlat</button>
+                    <button class="btn btn-secondary" id="btnPauseTimer">⏸️ Duruz</button>
+                    <button class="btn btn-secondary" id="btnResetTimer">🔄 Täzeden başlat</button>
                 </div>
-
                 <div class="form-group">
-                    <label class="form-label" style="text-align:center">📝 Çalışma Notları / Cümle Taslağınız (İsteğe Bağlı):</label>
-                    <textarea class="notes-area" id="notesArea" placeholder="Konuşmanıza başlamadan önce anahtar kelimeleri buraya yazabilirsiniz..."></textarea>
+                    <label class="form-label" style="text-align:center">📝 Bellikler / sözlejek zatlaryňyzyň meýilnamasy (islege görä):</label>
+                    <textarea class="notes-area" id="notesArea" placeholder="Geplemäge başlamazdan öň esasy sözleri şu ýere ýazyp bilersiňiz..."></textarea>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 4: TEACHER ADMIN PANEL -->
+        <!-- 4-nji bölüm: mugallymyň dolandyryş paneli -->
         <section id="adminView" class="view">
             <div class="hero-header" style="text-align:left; margin-bottom:1.5rem;">
-                <h1 class="hero-title" style="font-size:2rem;">👩‍🏫 Öğretmen Yönetim Paneli</h1>
-                <p class="hero-subtitle" style="margin:0;">Kategorilerinizi ve öğrencilere yönelik soruları buradan yönetebilirsiniz.</p>
+                <h1 class="hero-title" style="font-size:2rem;">👩‍🏫 Mugallymyň dolandyryş paneli</h1>
+                <p class="hero-subtitle" style="margin:0;">Kategoriýalary we okuwçylar üçin soraglary şu ýerden dolandyryň.</p>
             </div>
-
             <div class="admin-header-tabs">
-                <button class="tab-btn active" id="tabBtnCategories" onclick="switchAdminTab('categories')">📁 Kategoriler</button>
-                <button class="tab-btn" id="tabBtnQuestions" onclick="switchAdminTab('questions')">❓ Sorular</button>
+                <button class="tab-btn active" id="tabBtnCategories" onclick="switchAdminTab('categories')">📁 Kategoriýalar</button>
+                <button class="tab-btn" id="tabBtnQuestions" onclick="switchAdminTab('questions')">❓ Soraglar</button>
             </div>
-
-            <!-- TAB 1: CATEGORIES -->
+            <!-- 1-nji bölümçe: kategoriýalar -->
             <div id="adminCategoriesSection" class="admin-section active">
                 <div class="admin-actions-bar">
-                    <h3>Kategori Listesi</h3>
-                    <button class="btn btn-primary" onclick="openCategoryFormModal()">➕ Yeni Kategori Ekle</button>
+                    <h3>Kategoriýalaryň sanawy</h3>
+                    <button class="btn btn-primary" onclick="openCategoryFormModal()">➕ Kategoriýa goş</button>
                 </div>
-
                 <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>İkon</th>
-                            <th>Kategori Adı</th>
-                            <th>Açıklama</th>
-                            <th>Renk</th>
-                            <th>Soru Sayısı</th>
-                            <th>İşlemler</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminCatTableBody">
-                        <!-- Populated dynamically -->
-                    </tbody>
+                    <thead><tr><th>Nyşan</th><th>Kategoriýanyň ady</th><th>Düşündiriş</th><th>Reňk</th><th>Sorag sany</th><th>Hereketler</th></tr></thead>
+                    <tbody id="adminCatTableBody"><!-- Sanaw awtomatik döredilýär --></tbody>
                 </table>
             </div>
-
-            <!-- TAB 2: QUESTIONS -->
+            <!-- 2-nji bölümçe: soraglar -->
             <div id="adminQuestionsSection" class="admin-section">
                 <div class="admin-actions-bar">
-                    <h3>Soru Listesi</h3>
-                    <button class="btn btn-primary" onclick="openQuestionFormModal()">➕ Yeni Soru Ekle</button>
+                    <h3>Soraglaryň sanawy</h3>
+                    <button class="btn btn-primary" onclick="openQuestionFormModal()">➕ Sorag goş</button>
                 </div>
-
                 <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Kategori</th>
-                            <th>Soru Metni</th>
-                            <th>Zorluk</th>
-                            <th>İpucu</th>
-                            <th>İşlemler</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminQuestionsTableBody">
-                        <!-- Populated dynamically -->
-                    </tbody>
+                    <thead><tr><th>Kategoriýa</th><th>Soragyň teksti</th><th>Kynlyk derejesi</th><th>Maslahat</th><th>Hereketler</th></tr></thead>
+                    <tbody id="adminQuestionsTableBody"><!-- Sanaw awtomatik döredilýär --></tbody>
                 </table>
             </div>
         </section>
-
     </main>
 
-    <!-- QUESTION MODAL POPUP -->
+    <!-- Saýlanan sorag üçin açylýan penjire -->
     <div class="modal-overlay" id="questionModal">
         <div class="modal-box">
             <div class="modal-icon-badge" id="modalCatIcon">❓</div>
-            <div style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.5rem; font-weight:600;">RASTGELE SEÇİLEN SORU</div>
-            <div class="modal-question-text" id="modalQuestionText">Soru metni buraya gelecek...</div>
-            <div class="modal-hint-box" id="modalHintBox">💡 İpucu: ...</div>
-            <p style="margin-bottom:1.5rem; font-size:0.95rem; color:var(--text-muted);">
-                Bu soru ile 1 dakikalık konuşma/çalışma süresini başlatmak istiyor musunuz?
-            </p>
+            <div style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.5rem; font-weight:600;">TÖTÄNDEN SAÝLANAN SORAG</div>
+            <div class="modal-question-text" id="modalQuestionText">Soragyň teksti şu ýerde görkeziler...</div>
+            <div class="modal-hint-box" id="modalHintBox">💡 Maslahat: ...</div>
+            <p style="margin-bottom:1.5rem; font-size:0.95rem; color:var(--text-muted);">Şu sorag boýunça bir minutlyk gepleşik türgenleşigini başlasyňyz gelýärmi?</p>
             <div class="modal-actions">
-                <button class="modal-btn btn btn-primary" id="btnModalYes">✅ Evet (1 Dk Başlat)</button>
-                <button class="modal-btn btn btn-secondary" id="btnModalNo">❌ Hayır (Yeniden Seç)</button>
+                <button class="modal-btn btn btn-primary" id="btnModalYes">✅ Hawa (1 minut başla)</button>
+                <button class="modal-btn btn btn-secondary" id="btnModalNo">❌ Ýok (täzeden saýla)</button>
             </div>
         </div>
     </div>
 
-    <!-- ADMIN CATEGORY FORM MODAL -->
+    <!-- Kategoriýa goşmak we üýtgetmek penjiresi -->
     <div class="modal-overlay" id="categoryFormModal">
         <div class="modal-box" style="text-align:left;">
-            <h2 id="catFormModalTitle" style="margin-bottom:1.5rem; font-family:'Outfit'; font-size:1.5rem;">Yeni Kategori Ekle</h2>
+            <h2 id="catFormModalTitle" style="margin-bottom:1.5rem; font-family:'Outfit'; font-size:1.5rem;">Kategoriýa goş</h2>
             <form id="catForm">
                 <input type="hidden" id="catFormId">
-                <div class="form-group">
-                    <label class="form-label">Kategori Adı</label>
-                    <input type="text" class="form-input" id="catFormName" placeholder="Örn: Günlük Konuşma" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Açıklama</label>
-                    <textarea class="form-textarea" id="catFormDesc" rows="2" placeholder="Kategori hakkında kısa bilgi..."></textarea>
-                </div>
+                <div class="form-group"><label class="form-label">Kategoriýanyň ady</label><input type="text" class="form-input" id="catFormName" placeholder="Mysal: Gündelik gepleşik" required></div>
+                <div class="form-group"><label class="form-label">Düşündiriş</label><textarea class="form-textarea" id="catFormDesc" rows="2" placeholder="Kategoriýa barada gysgaça maglumat..."></textarea></div>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">İkon (Emoji)</label>
-                        <input type="text" class="form-input" id="catFormIcon" placeholder="🗣️">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Tema Rengi</label>
-                        <input type="color" class="form-input" id="catFormColor" value="#6366f1" style="height:44px; padding:2px;">
-                    </div>
+                    <div class="form-group"><label class="form-label">Nyşan (emoji)</label><input type="text" class="form-input" id="catFormIcon" placeholder="🗣️"></div>
+                    <div class="form-group"><label class="form-label">Esasy reňk</label><input type="color" class="form-input" id="catFormColor" value="#6366f1" style="height:44px; padding:2px;"></div>
                 </div>
-                <div class="modal-actions" style="margin-top:1.5rem;">
-                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
-                    <button type="button" class="btn btn-secondary" style="flex:1;" onclick="closeCategoryFormModal()">İptal</button>
-                </div>
+                <div class="modal-actions" style="margin-top:1.5rem;"><button type="submit" class="btn btn-primary" style="flex:1;">Ýatda sakla</button><button type="button" class="btn btn-secondary" style="flex:1;" onclick="closeCategoryFormModal()">Ýatyr</button></div>
             </form>
         </div>
     </div>
 
-    <!-- ADMIN QUESTION FORM MODAL -->
+    <!-- Sorag goşmak we üýtgetmek penjiresi -->
     <div class="modal-overlay" id="questionFormModal">
         <div class="modal-box" style="text-align:left;">
-            <h2 id="qFormModalTitle" style="margin-bottom:1.5rem; font-family:'Outfit'; font-size:1.5rem;">Yeni Soru Ekle</h2>
+            <h2 id="qFormModalTitle" style="margin-bottom:1.5rem; font-family:'Outfit'; font-size:1.5rem;">Sorag goş</h2>
             <form id="qForm">
                 <input type="hidden" id="qFormId">
-                <div class="form-group">
-                    <label class="form-label">Kategori</label>
-                    <select class="form-select" id="qFormCategory" required>
-                        <!-- Categories populated dynamically -->
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Soru Metni</label>
-                    <textarea class="form-textarea" id="qFormText" rows="3" placeholder="Öğrenciden cevaplamasını istediğiniz soruyu giriniz..." required></textarea>
-                </div>
+                <div class="form-group"><label class="form-label">Kategoriýa</label><select class="form-select" id="qFormCategory" required><!-- Kategoriýalar awtomatik goşulýar --></select></div>
+                <div class="form-group"><label class="form-label">Soragyň teksti</label><textarea class="form-textarea" id="qFormText" rows="3" placeholder="Okuwçynyň jogap bermegini isleýän soragyňyzy ýazyň..." required></textarea></div>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Zorluk Derecesi</label>
-                        <select class="form-select" id="qFormDiff">
-                            <option value="Kolay">Kolay</option>
-                            <option value="Orta" selected>Orta</option>
-                            <option value="Zor">Zor</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">İpucu / Grammar Notu</label>
-                        <input type="text" class="form-input" id="qFormHint" placeholder="Örn: Use Present Perfect...">
-                    </div>
+                    <div class="form-group"><label class="form-label">Kynlyk derejesi</label><select class="form-select" id="qFormDiff"><option value="Kolay">Ýeňil</option><option value="Orta" selected>Orta</option><option value="Zor">Kyn</option></select></div>
+                    <div class="form-group"><label class="form-label">Maslahat / bellik</label><input type="text" class="form-input" id="qFormHint" placeholder="Mysal: Jogabyňyzy sebäplendiriň..."></div>
                 </div>
-                <div class="modal-actions" style="margin-top:1.5rem;">
-                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
-                    <button type="button" class="btn btn-secondary" style="flex:1;" onclick="closeQuestionFormModal()">İptal</button>
-                </div>
+                <div class="modal-actions" style="margin-top:1.5rem;"><button type="submit" class="btn btn-primary" style="flex:1;">Ýatda sakla</button><button type="button" class="btn btn-secondary" style="flex:1;" onclick="closeQuestionFormModal()">Ýatyr</button></div>
             </form>
         </div>
     </div>
 
     <script src="/static/js/app.js"></script>
+    <script src="/static/js/turkmen.js"></script>
 </body>
 </html>
